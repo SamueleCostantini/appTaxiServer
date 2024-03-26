@@ -1,6 +1,7 @@
 package com.appTaxi.user;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,24 +11,12 @@ public class UtenteService {
 
     private final UtenteRepository utenteRepository;
 
+    @Autowired
     public UtenteService(UtenteRepository utenteRepository) {
         this.utenteRepository = utenteRepository;
     }
 
     public List<Utente> getUser() {
-
-
-
-        return List.of(
-                new Utente(
-                        1L,
-                        "samuele",
-                        "costantini",
-                        "email@email.com",
-                        "12345S",
-                        true
-                )
-        );
-    }
+        return utenteRepository.findAll();}
 
 }

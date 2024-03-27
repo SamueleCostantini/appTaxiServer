@@ -21,7 +21,7 @@ public class Utente {
             strategy = GenerationType.SEQUENCE,
             generator = "utente_sequence"
     )
-    private Long id; //id user globale
+    private Long IDUtente; //id user globale
     private String name;
     private String surname;
     private String email;
@@ -31,13 +31,13 @@ public class Utente {
     public Utente() {
     }
 
-    public Utente(Long id,
+    public Utente(Long IDUtente,
                   String name,
                   String surname,
                   String email,
                   String password,
                   boolean role) {
-        this.id = id;
+        this.IDUtente = IDUtente;
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -58,11 +58,11 @@ public class Utente {
         this.role = role;
     }
 
-    public Long getId() {
-        return id;
+    public Long getIDUtente() {
+        return IDUtente;
     }
-    public void setId(Long id) {
-        this.id = id;
+    public void setIDUtente(Long iIDUtente) {
+        this.IDUtente = IDUtente;
     }
     public String getName() {
         return name;
@@ -98,7 +98,7 @@ public class Utente {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "id=" + IDUtente +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +

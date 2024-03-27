@@ -1,16 +1,17 @@
 package com.appTaxi.user;
 
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
 @Configuration
-public class StudentCongif {
+public class UtenteConfig {
+    @Bean
     CommandLineRunner commandLineRunner(UtenteRepository repository){
         return args -> {
             Utente samuele  = new Utente(
-                    1L,
                     "samuele",
                     "costantini",
                     "email@email.com",
@@ -18,7 +19,6 @@ public class StudentCongif {
                     true
             );
             Utente hani  = new Utente(
-                    1L,
                     "hani",
                     "belal",
                     "email@email.com",

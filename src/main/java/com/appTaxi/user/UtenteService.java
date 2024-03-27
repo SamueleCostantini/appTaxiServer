@@ -3,6 +3,7 @@ package com.appTaxi.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -19,4 +20,8 @@ public class UtenteService {
     public List<Utente> getUser() {
         return utenteRepository.findAll();}
 
+    @PostMapping
+    public void addNewUtente(Utente utente) {
+        System.out.println(utente);
+    }
 }

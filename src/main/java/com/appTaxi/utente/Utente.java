@@ -1,4 +1,4 @@
-package com.appTaxi.user;
+package com.appTaxi.utente;
 
 import jakarta.persistence.*;
 
@@ -97,7 +97,7 @@ public class Utente {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Utente{" +
                 "id=" + IDUtente +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +

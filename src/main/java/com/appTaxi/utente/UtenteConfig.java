@@ -1,4 +1,4 @@
-package com.appTaxi.user;
+package com.appTaxi.utente;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;

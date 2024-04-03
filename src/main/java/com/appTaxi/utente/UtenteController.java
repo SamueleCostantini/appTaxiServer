@@ -1,4 +1,4 @@
-package com.appTaxi.user;
+package com.appTaxi.utente;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +10,7 @@ import java.util.List;
 * */
 //controlla l'interazione con il web client
 @RestController
-@RequestMapping(path = "api/v1/user") //indica la path della pagina
+@RequestMapping(path = "api/v1/utente") //indica la path della pagina
 public class UtenteController {
     private final UtenteService utenteService;
 
@@ -20,8 +20,8 @@ public class UtenteController {
     }
 
     @GetMapping //gestisce le richieste get dal client
-    public List<Utente> getUser() {
-        return utenteService.getUser();
+    public List<Utente> getUtente() {
+        return utenteService.getUtente();
 
     }
     @PostMapping//gestisce le richieste post dal client

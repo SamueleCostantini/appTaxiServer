@@ -1,11 +1,11 @@
-package com.appTaxi.user;
+package com.appTaxi.utente;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UtenteService {
@@ -17,11 +17,18 @@ public class UtenteService {
         this.utenteRepository = utenteRepository;
     }
 
-    public List<Utente> getUser() {
+    public List<Utente> getUtente() {
         return utenteRepository.findAll();
     }
 
     public void addNewUtente(Utente utente) {
-        System.out.println(utente);
+
+        Optional<Utente> utenteOptional = utenteRepository.findUtenteByEmail(utente.getEmail());
+
+        if(utenteOptional.isPresent()){
+            throw new IllegalStateException("Email in uso");
+        }
+
+        utenteRepository.save(utente);
     }
 }

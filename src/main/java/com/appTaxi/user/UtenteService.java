@@ -18,9 +18,9 @@ public class UtenteService {
     }
 
     public List<Utente> getUser() {
-        return utenteRepository.findAll();}
+        return utenteRepository.findAll();
+    }
 
-    @PostMapping
     public void addNewUtente(Utente utente) {
         System.out.println(utente);
     }

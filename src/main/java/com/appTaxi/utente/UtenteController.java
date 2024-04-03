@@ -28,4 +28,9 @@ public class UtenteController {
     public void registerNewUtente(@RequestBody Utente utente){
         utenteService.addNewUtente(utente);
     }
+
+    @DeleteMapping(path = "delete/{IDUtente}")
+    public void deleteStudent(@PathVariable("IDUtente") Long IDUtente){
+        utenteService.deleteUtente(IDUtente);
+    }
 }

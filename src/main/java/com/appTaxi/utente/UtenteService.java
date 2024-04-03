@@ -31,4 +31,14 @@ public class UtenteService {
 
         utenteRepository.save(utente);
     }
+
+    public void deleteUtente(Long IDUtente) {
+        boolean esiste = utenteRepository.existsById(IDUtente);
+
+        if(!esiste){
+            throw new IllegalStateException("Id non esistente: "+ IDUtente);
+        }
+
+        utenteRepository.deleteById(IDUtente);
+    }
 }

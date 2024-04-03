@@ -5,7 +5,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
-
+/*
+* uso repository ogni volta che devo interagire con le tuple del db
+*
+* */
 @Repository
 public interface UtenteRepository
         extends JpaRepository<Utente, Long> {

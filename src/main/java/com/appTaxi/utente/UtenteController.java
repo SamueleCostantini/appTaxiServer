@@ -33,4 +33,9 @@ public class UtenteController {
     public void deleteStudent(@PathVariable("IDUtente") Long IDUtente){
         utenteService.deleteUtente(IDUtente);
     }
+
+    @PutMapping(path = "{IDUtente}={attributo}={valore}")
+    public void updateUtente(@PathVariable("IDUtente") Long IDUtente, @PathVariable("attributo") String attributo, @PathVariable("valore") String valore){
+        utenteService.updateUtente(IDUtente, attributo, valore);
+    }
 }

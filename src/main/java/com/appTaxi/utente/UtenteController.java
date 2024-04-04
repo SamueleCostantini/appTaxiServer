@@ -10,7 +10,7 @@ import java.util.List;
 * */
 //controlla l'interazione con il web client
 @RestController
-@RequestMapping(path = "api/v1/utente") //indica la path della pagina
+@RequestMapping(path = "utente") //indica la path della pagina
 public class UtenteController {
     private final UtenteService utenteService;
 
@@ -29,7 +29,7 @@ public class UtenteController {
         utenteService.addNewUtente(utente);
     }
 
-    @DeleteMapping(path = "delete/{IDUtente}")
+    @DeleteMapping(path = "{IDUtente}")
     public void deleteStudent(@PathVariable("IDUtente") Long IDUtente){
         utenteService.deleteUtente(IDUtente);
     }

@@ -52,20 +52,58 @@ public class UtenteService {
         ut1 = utenteRepository.getReferenceById(IDUtente);
         switch(attributo){
             case "IDUtente":
-                ut1.setIDUtente(Long.valueOf(valore));
 
+                /*controlli se id inserito è valido*/
+                try {
+                    Double.parseDouble(valore);
+                } catch (NumberFormatException e) {
+                    throw new IllegalStateException("Id non valido");
+                }
+                esiste = utenteRepository.existsById(Long.valueOf(valore));
+                if(esiste){
+                    throw new IllegalStateException("Questo id già esiste");
+                }
+                if(valore.isEmpty()){
+                    throw new IllegalStateException("Id non valido");
+                }
+                /*fine controlli*/
+
+                ut1.setIDUtente(Long.valueOf(valore));
                 break;
             case "email":
+
+                /*controlli se id inserito è valido*/
+                Optional<Utente> utenteByEmail = utenteRepository.findUtenteByEmail(valore);
+                if(utenteByEmail.isPresent()){
+                    throw new IllegalStateException("Questa email già esiste");
+                }
+                if(valore.isEmpty()){
+                    throw new IllegalStateException("Email non valida");
+                }
+                /*fine controlli*/
+
                 ut1.setEmail(valore);
                 System.out.println("nuova email : "+valore);
                 break;
             case "name":
+                if(valore.isEmpty()){
+                    throw new IllegalStateException("Email non valida");
+                }
                 ut1.setName(valore);
                 break;
             case "surname":
+                if(valore.isEmpty()){
+                    throw new IllegalStateException("cognome non valida");
+                }
                 ut1.setSurname(valore);
                 break;
             case "password":
+
+                /*implementare parametri password*/
+
+                if(valore.isEmpty()){
+                    throw new IllegalStateException("password non valida");
+                }
                 ut1.setPassword(valore);
                 break;
         }

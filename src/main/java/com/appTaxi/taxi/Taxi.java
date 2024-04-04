@@ -17,22 +17,22 @@ public class Taxi {
             strategy = GenerationType.SEQUENCE,
             generator = "taxi_sequence"
     )
-    private Long idTaxi;
+    private Long IDTaxi;
     private String targa;
-    public Taxi(Long idTaxi, String targa) {
-        this.idTaxi = idTaxi;
+    public Taxi(Long IDTaxi, String targa) {
+        this.IDTaxi = IDTaxi;
         this.targa = targa;
     }
 
     public Taxi() {
     }
 
-    public Long getIdTaxi() {
-        return idTaxi;
+    public Long getIDTaxi() {
+        return IDTaxi;
     }
 
-    public void setIdTaxi(Long idTaxi) {
-        this.idTaxi = idTaxi;
+    public void setIDTaxi(Long IDTaxi) {
+        this.IDTaxi = IDTaxi;
     }
 
     public String getTarga() {
@@ -46,8 +46,10 @@ public class Taxi {
     @Override
     public String toString() {
         return "Taxi{" +
-                "idTaxi=" + idTaxi +
+                "IDTaxi=" + IDTaxi +
                 ", targa=" + targa +
                 '}';
     }
+
+
 }

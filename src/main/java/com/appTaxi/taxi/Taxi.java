@@ -8,33 +8,15 @@ import java.util.Arrays;
 public class Taxi {
 
     @Id
-    @SequenceGenerator(
-            name = "taxi_sequence",
-            sequenceName = "taxi_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "taxi_sequence"
-    )
-    private Long IDTaxi;
+
     private String targa;
-    public Taxi(Long IDTaxi, String targa) {
-        this.IDTaxi = IDTaxi;
+    public Taxi(String targa) {
+
         this.targa = targa;
     }
 
     public Taxi() {
     }
-
-    public Long getIDTaxi() {
-        return IDTaxi;
-    }
-
-    public void setIDTaxi(Long IDTaxi) {
-        this.IDTaxi = IDTaxi;
-    }
-
     public String getTarga() {
         return targa;
     }
@@ -46,8 +28,7 @@ public class Taxi {
     @Override
     public String toString() {
         return "Taxi{" +
-                "IDTaxi=" + IDTaxi +
-                ", targa=" + targa +
+                "targa=" + targa +
                 '}';
     }
 

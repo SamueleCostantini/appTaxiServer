@@ -1,4 +1,4 @@
-package com.appTaxi.utente;
+package com.appTaxi.passeggero;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -10,9 +10,9 @@ import java.util.Optional;
 *
 * */
 @Repository
-public interface UtenteRepository
-        extends JpaRepository<Utente, Long> {
+public interface PasseggeroRepository
+        extends JpaRepository<Passeggero, Long> {
     //query
-    @Query("SELECT u FROM Utente u WHERE u.email= ?1")
-    Optional<Utente> findUtenteByEmail(String email);
+    @Query("SELECT u FROM Passeggero u WHERE u.email= ?1")
+    Optional<Passeggero> findPasseggeroByEmail(String email);
 }

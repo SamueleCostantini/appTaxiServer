@@ -69,7 +69,7 @@ public class TaxiService {
                 }
                 /*fine controlli*/
 
-                tx1.setIDTaxi(Long.valueOf(valore));
+                tx1.setTarga(valore);
                 break;
             case "targa":
 

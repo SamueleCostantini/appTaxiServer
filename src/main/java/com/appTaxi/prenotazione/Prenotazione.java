@@ -4,21 +4,21 @@ public class Prenotazione {
     private Long id;
     private LocalDateTime DataOra;
     private String stato;
-    private Long id_fruitore;
-    private Long id_erogatore;
-    private Long id_taxi;
+    private Long idPasseggero;
+    private Long idTassista;
+    private String id_taxi;
 
     public Prenotazione(Long id,
                         LocalDateTime dataOra,
                         String stato,
-                        Long id_fruitore,
-                        Long id_erogatore,
-                        Long id_taxi) {
+                        Long idPasseggero,
+                        Long idTassista,
+                        String id_taxi) {
         this.id = id;
         DataOra = dataOra;
         this.stato = stato;
-        this.id_fruitore = id_fruitore;
-        this.id_erogatore = id_erogatore;
+        this.idPasseggero = idPasseggero;
+        this.idTassista = idTassista;
         this.id_taxi = id_taxi;
     }
 
@@ -49,27 +49,27 @@ public class Prenotazione {
         this.stato = stato;
     }
 
-    public Long getId_fruitore() {
-        return id_fruitore;
+    public Long getIdPasseggero() {
+        return idPasseggero;
     }
 
-    public void setId_fruitore(Long id_fruitore) {
-        this.id_fruitore = id_fruitore;
+    public void setIdPasseggero(Long idPasseggero) {
+        this.idPasseggero = idPasseggero;
     }
 
-    public Long getId_erogatore() {
-        return id_erogatore;
+    public Long getIdTassista() {
+        return idTassista;
     }
 
-    public void setId_erogatore(Long id_erogatore) {
-        this.id_erogatore = id_erogatore;
+    public void setIdTassista(Long idTassista) {
+        this.idTassista = idTassista;
     }
 
-    public Long getId_taxi() {
+    public String getId_taxi() {
         return id_taxi;
     }
 
-    public void setId_taxi(Long id_taxi) {
+    public void setId_taxi(String id_taxi) {
         this.id_taxi = id_taxi;
     }
 
@@ -79,8 +79,8 @@ public class Prenotazione {
                 "id=" + id +
                 ", DataOra=" + DataOra +
                 ", stato='" + stato + '\'' +
-                ", id_fruitore=" + id_fruitore +
-                ", id_erogatore=" + id_erogatore +
+                ", idPasseggero=" + idPasseggero +
+                ", idTassista=" + idTassista +
                 ", id_taxi=" + id_taxi +
                 '}';
     }

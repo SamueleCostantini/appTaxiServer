@@ -1,4 +1,4 @@
-package com.appTaxi.utente;
+package com.appTaxi.passeggero;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -7,18 +7,18 @@ import org.springframework.context.annotation.Configuration;
 import java.util.List;
 
 @Configuration
-public class UtenteConfig {
+public class PasseggeroConfig {
     @Bean
-    CommandLineRunner commandLineRunner(UtenteRepository repository){
+    CommandLineRunner commandLineRunner(PasseggeroRepository repository){
         return args -> {
-            Utente samuele  = new Utente(
+            Passeggero samuele  = new Passeggero(
                     "samuele",
                     "costantini",
                     "email@email.com",
                     "12345S",
                     true
             );
-            Utente hani  = new Utente(
+            Passeggero hani  = new Passeggero(
                     "hani",
                     "belal",
                     "email@email.com",

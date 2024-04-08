@@ -1,4 +1,4 @@
-package com.appTaxi.utente;
+package com.appTaxi.tassista;
 
 import jakarta.persistence.*;
 
@@ -10,7 +10,7 @@ import jakarta.persistence.*;
 //per abbinare l'entita al database
 @Entity
 @Table
-public class Utente {
+public class Tassista {
     @Id
     @SequenceGenerator(
             name = "utente_sequence",
@@ -21,48 +21,51 @@ public class Utente {
             strategy = GenerationType.SEQUENCE,
             generator = "utente_sequence"
     )
-    private Long IDUtente; //id user globale
+    private Long IDTassista; //id user globale
     private String name;
     private String surname;
     private String email;
     private String password; //da cripltare con hash, utilizzare spring security
     private boolean role; //ruolo del utente, 0 per fruitore (cliente), 1 per erogatore(tassista)
 
-    public Utente() {
+    private String targa;
+    public Tassista() {
     }
 
-    public Utente(Long IDUtente,
+    public Tassista(Long IDTassista,
                   String name,
                   String surname,
                   String email,
                   String password,
-                  boolean role) {
-        this.IDUtente = IDUtente;
+                  boolean role, String targa) {
+        this.IDTassista = IDTassista;
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
         this.role = role;
+        this.targa = targa;
     }
 
-    public Utente(String name,
+    public Tassista(String name,
                   String surname,
                   String email,
                   String password,
-                  boolean role) {
+                  boolean role, String targa) {
 
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
         this.role = role;
+        this.targa = targa;
     }
 
-    public Long getIDUtente() {
-        return IDUtente;
+    public Long getIDTassista() {
+        return IDTassista;
     }
-    public void setIDUtente(Long iIDUtente) {
-        this.IDUtente = IDUtente;
+    public void setIDTassista(Long iIDTassista) {
+        this.IDTassista = IDTassista;
     }
     public String getName() {
         return name;
@@ -95,15 +98,24 @@ public class Utente {
         this.role = role;
     }
 
+    public String getTarga() {
+        return targa;
+    }
+
+    public void setTarga(String targa) {
+        this.targa = targa;
+    }
+
     @Override
     public String toString() {
-        return "Utente{" +
-                "id=" + IDUtente +
+        return "Tassista{" +
+                "IDTassista=" + IDTassista +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +
+                ", targa='" + targa + '\'' +
                 '}';
     }
 }

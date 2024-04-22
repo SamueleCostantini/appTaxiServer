@@ -1,6 +1,7 @@
-package com.appTaxi.passeggero;
+package com.appTaxi.prenotazione;
 
 
+import com.appTaxi.passeggero.Passeggero;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,32 +10,32 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public class PasseggeroService {
+public class PrenotazioneService {
 
-    private final PasseggeroRepository passeggeroRepository;
+    private final PrenotazioneRepository prenotazioneRepository;
 
     @Autowired
-    public PasseggeroService(PasseggeroRepository passeggeroRepository) {
-        this.passeggeroRepository = passeggeroRepository;
+    public PrenotazioneService(PrenotazioneRepository prenotazioneRepository) {
+        this.prenotazioneRepository = prenotazioneRepository;
     }
 
     public List<Passeggero> getPasseggero() {
-        return passeggeroRepository.findAll();
+        return prenotazioneRepository.findAll();
     }
 
     public void addNewPasseggero(Passeggero passeggero) {
 
-        Optional<Passeggero> passeggeroOptional = passeggeroRepository.findPasseggeroByEmail(passeggero.getEmail());
+        Optional<Passeggero> passeggeroOptional = prenotazioneRepository.findPasseggeroByEmail(passeggero.getEmail());
 
         if(passeggeroOptional.isPresent()){
             throw new IllegalStateException("Email in uso");
         }
 
-        passeggeroRepository.save(passeggero);
+        prenotazioneRepository.save(passeggero);
     }
 
     public Passeggero loginPasseggero(String email, String password){
-        Optional<Passeggero> passeggeroOptional = passeggeroRepository.findPasseggeroByEmail(email);
+        Optional<Passeggero> passeggeroOptional = prenotazioneRepository.findPasseggeroByEmail(email);
         if(passeggeroOptional.isEmpty()){
             throw new IllegalStateException("Email non esistente");
         }
@@ -49,23 +50,23 @@ public class PasseggeroService {
     }
 
     public void deletePasseggero(Long IDPasseggero) {
-        boolean esiste = passeggeroRepository.existsById(IDPasseggero);
+        boolean esiste = prenotazioneRepository.existsById(IDPasseggero);
 
         if(!esiste){
             throw new IllegalStateException("Id non esistente: "+ IDPasseggero);
         }
 
-        passeggeroRepository.deleteById(IDPasseggero);
+        prenotazioneRepository.deleteById(IDPasseggero);
     }
 
     public void updatePasseggero(String email, String attributo, String valore) {
-        Optional<Passeggero> passeggeroOptional = passeggeroRepository.findPasseggeroByEmail(email);
+        Optional<Passeggero> passeggeroOptional = prenotazioneRepository.findPasseggeroByEmail(email);
         if(passeggeroOptional.isEmpty()){
             throw new IllegalStateException("Passeggero "+email+" non esiste ");
         }
         long IDPasseggero = passeggeroOptional.get().getIDPasseggero();
         Passeggero ut1 = new Passeggero();
-        ut1 = passeggeroRepository.getReferenceById(IDPasseggero);
+        ut1 = prenotazioneRepository.getReferenceById(IDPasseggero);
         boolean esiste = true;
         switch(attributo){
             case "IDPasseggero":
@@ -76,7 +77,7 @@ public class PasseggeroService {
                 } catch (NumberFormatException e) {
                     throw new IllegalStateException("Id non valido");
                 }
-                esiste = passeggeroRepository.existsById(Long.valueOf(valore));
+                esiste = prenotazioneRepository.existsById(Long.valueOf(valore));
                 if(esiste){
                     throw new IllegalStateException("Questo id già esiste");
                 }
@@ -90,7 +91,7 @@ public class PasseggeroService {
             case "email":
 
                 /*controlli se id inserito è valido*/
-                Optional<Passeggero> passeggeroByEmail = passeggeroRepository.findPasseggeroByEmail(valore);
+                Optional<Passeggero> passeggeroByEmail = prenotazioneRepository.findPasseggeroByEmail(valore);
                 if(passeggeroByEmail.isPresent()){
                     throw new IllegalStateException("Questa email già esiste");
                 }
@@ -133,6 +134,6 @@ public class PasseggeroService {
                 ut1.setStato(valore);
                 break;
         }
-        passeggeroRepository.save(ut1);
+        prenotazioneRepository.save(ut1);
     }
 }

@@ -2,8 +2,13 @@ package com.appTaxi.taxi;
 
 import com.appTaxi.taxi.Taxi;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import java.util.Arrays;
 import java.util.List;
 
 /*
@@ -13,6 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "taxi") //indica la path della pagina
 public class TaxiController {
+
     private final TaxiService taxiService;
 
     @Autowired
@@ -24,6 +30,7 @@ public class TaxiController {
     public List<Taxi> getTaxi() {
         return taxiService.getTaxi();
     }
+    @CrossOrigin
     @PostMapping//gestisce le richieste post dal client
     public void registerNewTaxi(@RequestBody Taxi taxi){
         taxiService.addNewTaxi(taxi);

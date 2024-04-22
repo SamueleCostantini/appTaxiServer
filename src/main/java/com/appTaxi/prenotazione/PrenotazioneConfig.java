@@ -1,5 +1,6 @@
-package com.appTaxi.passeggero;
+package com.appTaxi.prenotazione;
 
+import com.appTaxi.passeggero.Passeggero;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,9 +8,9 @@ import org.springframework.context.annotation.Configuration;
 import java.util.List;
 
 @Configuration
-public class PasseggeroConfig {
+public class PrenotazioneConfig {
     @Bean
-    CommandLineRunner commandLineRunner(PasseggeroRepository repository){
+    CommandLineRunner commandLineRunner(PrenotazioneRepository repository){
         return args -> {
             Passeggero samuele  = new Passeggero(
                     "samuele",

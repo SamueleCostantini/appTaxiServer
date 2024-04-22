@@ -26,6 +26,7 @@ public class TassistaController {
         return utenteService.getTassista();
 
     }
+    @CrossOrigin
     @PostMapping//gestisce le richieste post dal client
     public void registerNewTassista(@RequestBody Tassista utente){
         utenteService.addNewTassista(utente);

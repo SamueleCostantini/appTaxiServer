@@ -8,22 +8,63 @@ public class Prenotazione {
     private Long idTassista;
     private String id_taxi;
 
+    private String partenza;
+    private String destinazione;
+    private int km;
+
+    private float costoXkm;
+
+
+
+    private float costoTratta;
     public Prenotazione(Long id,
                         LocalDateTime dataOra,
                         String stato,
                         Long idPasseggero,
                         Long idTassista,
-                        String id_taxi) {
+                        String partenza,
+                        String destinazione,
+                        int km,
+                        float costoXkm) {
         this.id = id;
         DataOra = dataOra;
         this.stato = stato;
         this.idPasseggero = idPasseggero;
         this.idTassista = idTassista;
-        this.id_taxi = id_taxi;
+        this.partenza = partenza;
+        this.destinazione = destinazione;
+        this.km = km;
+        this.costoXkm = costoXkm;
+        this.costoTratta = km*costoXkm;
+
     }
 
     public Prenotazione() {
     }
+    public float getCostoTratta() {
+        return costoTratta;
+    }
+
+    public void setCostoTratta(float costoTratta) {
+        this.costoTratta = costoTratta;
+    }
+    public String getPartenza() {
+        return partenza;
+    }
+
+    public String getDestinazione() {
+        return destinazione;
+    }
+
+    public int getKm() {
+        return km;
+    }
+
+    public float getCostoXkm() {
+        return costoXkm;
+    }
+
+
 
     public Long getId() {
         return id;

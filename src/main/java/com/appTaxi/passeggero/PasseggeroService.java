@@ -58,10 +58,10 @@ public class PasseggeroService {
         passeggeroRepository.deleteById(IDPasseggero);
     }
 
-    public void updatePasseggero(String email, String attributo, String valore) {
-        Optional<Passeggero> passeggeroOptional = passeggeroRepository.findPasseggeroByEmail(email);
+    public void updatePasseggero(Long id, String attributo, String valore) {
+        Optional<Passeggero> passeggeroOptional = passeggeroRepository.findById(id);
         if(passeggeroOptional.isEmpty()){
-            throw new IllegalStateException("Passeggero "+email+" non esiste ");
+            throw new IllegalStateException("Passeggero "+id+" non esiste ");
         }
         long IDPasseggero = passeggeroOptional.get().getIDPasseggero();
         Passeggero ut1 = new Passeggero();
@@ -131,6 +131,24 @@ public class PasseggeroService {
                     throw new IllegalStateException("stato non valida");
                 }
                 ut1.setStato(valore);
+                break;
+            case "lat":
+
+                /*implementare parametri password*/
+
+                if(valore.isEmpty()){
+                    throw new IllegalStateException("stato non valida");
+                }
+                ut1.setLat(Double.parseDouble(valore));
+                break;
+            case "lng":
+
+                /*implementare parametri password*/
+
+                if(valore.isEmpty()){
+                    throw new IllegalStateException("stato non valida");
+                }
+                ut1.setLng(Double.parseDouble(valore));
                 break;
         }
         passeggeroRepository.save(ut1);

@@ -1,12 +1,26 @@
 package com.appTaxi.prenotazione;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
+
+@Entity
+@Table
 public class Prenotazione {
+    @Id
+    @SequenceGenerator(
+            name = "prenotazione_sequence",
+            sequenceName = "prenotazione_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "prenotazioen_sequence"
+    )
     private Long id;
     private LocalDateTime DataOra;
     private String stato;
     private Long idPasseggero;
     private Long idTassista;
-    private String id_taxi;
 
     private String partenza;
     private String destinazione;
@@ -18,7 +32,6 @@ public class Prenotazione {
 
     private float costoTratta;
     public Prenotazione(Long id,
-                        LocalDateTime dataOra,
                         String stato,
                         Long idPasseggero,
                         Long idTassista,
@@ -27,7 +40,8 @@ public class Prenotazione {
                         int km,
                         float costoXkm) {
         this.id = id;
-        DataOra = dataOra;
+        this.DataOra = LocalDateTime.now();
+        System.out.println("ora: "+this.DataOra);
         this.stato = stato;
         this.idPasseggero = idPasseggero;
         this.idTassista = idTassista;
@@ -37,9 +51,11 @@ public class Prenotazione {
         this.costoXkm = costoXkm;
         this.costoTratta = km*costoXkm;
 
-    }
+        }
 
     public Prenotazione() {
+        this.DataOra = LocalDateTime.now();
+        System.out.println("ora: "+this.DataOra);
     }
     public float getCostoTratta() {
         return costoTratta;
@@ -63,8 +79,6 @@ public class Prenotazione {
     public float getCostoXkm() {
         return costoXkm;
     }
-
-
 
     public Long getId() {
         return id;
@@ -106,23 +120,20 @@ public class Prenotazione {
         this.idTassista = idTassista;
     }
 
-    public String getId_taxi() {
-        return id_taxi;
-    }
-
-    public void setId_taxi(String id_taxi) {
-        this.id_taxi = id_taxi;
-    }
 
     @Override
     public String toString() {
         return "Prenotazione{" +
                 "id=" + id +
-                ", DataOra=" + DataOra +
+                ", DataOra=" + DataOra.toString() +
                 ", stato='" + stato + '\'' +
                 ", idPasseggero=" + idPasseggero +
                 ", idTassista=" + idTassista +
-                ", id_taxi=" + id_taxi +
+                ", partenza='" + partenza + '\'' +
+                ", destinazione='" + destinazione + '\'' +
+                ", km=" + km +
+                ", costoXkm=" + costoXkm +
+                ", costoTratta=" + costoTratta +
                 '}';
     }
 }

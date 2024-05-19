@@ -28,8 +28,27 @@ public class Tassista {
     private String password; //da cripltare con hash, utilizzare spring security
     private boolean role; //ruolo del utente, 0 per fruitore (cliente), 1 per erogatore(tassista)
 
+    private double lat;
+    private double lng;
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
+    }
     private String targa;
     public Tassista() {
+        this.lat = 0.0;
+        this.lng = 0.0;
     }
 
     public Tassista(Long IDTassista,
@@ -115,6 +134,8 @@ public class Tassista {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +
+                ", lat=" + lat +
+                ", lng=" + lng +
                 ", targa='" + targa + '\'' +
                 '}';
     }

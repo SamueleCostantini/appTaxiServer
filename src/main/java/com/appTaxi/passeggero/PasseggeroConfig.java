@@ -9,7 +9,7 @@ import java.util.List;
 @Configuration
 public class PasseggeroConfig {
     @Bean
-    CommandLineRunner commandLineRunner(PasseggeroRepository repository){
+    CommandLineRunner commandLineRunnerTassista(PasseggeroRepository repository){
         return args -> {
             Passeggero samuele  = new Passeggero(
                     "samuele",

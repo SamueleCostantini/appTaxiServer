@@ -43,7 +43,7 @@ public class PasseggeroController {
     }
     @CrossOrigin
     @PutMapping(path = "{IDPasseggero}={attributo}={valore}")
-    public void updatePasseggero(@PathVariable("IDPasseggero") String email, @PathVariable("attributo") String attributo, @PathVariable("valore") String valore){
-        passeggeroService.updatePasseggero(email, attributo, valore);
+    public void updatePasseggero(@PathVariable("IDPasseggero") Long id, @PathVariable("attributo") String attributo, @PathVariable("valore") String valore){
+        passeggeroService.updatePasseggero(id, attributo, valore);
     }
 }

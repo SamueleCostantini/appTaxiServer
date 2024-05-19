@@ -25,7 +25,26 @@ public class Passeggero {
     private String name;
     private String surname;
     private String email;
-    private String password; //da cripltare con hash, utilizzare spring security
+    private String password; //da criptare con hash, utilizzare spring security
+    private double lat;
+    private double lng;
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
+    }
+
+
 
     public String getStato() {
         return stato;
@@ -40,6 +59,8 @@ public class Passeggero {
 
     public Passeggero() {
         this.stato = "Libero";
+        this.lat = 0.0;
+        this.lng = 0.0;
     }
 
     public Passeggero(Long IDPasseggero,
@@ -69,6 +90,7 @@ public class Passeggero {
         this.password = password;
         this.role = role;
         this.stato = "Libero";
+
     }
 
     public Long getIDPasseggero() {
@@ -116,6 +138,8 @@ public class Passeggero {
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", lat=" + lat +
+                ", lng=" + lng +
                 ", stato='" + stato + '\'' +
                 ", role=" + role +
                 '}';

@@ -19,57 +19,43 @@ public class PrenotazioneService {
         this.prenotazioneRepository = prenotazioneRepository;
     }
 
-    public List<Passeggero> getPasseggero() {
+    public List<Prenotazione> getPrenotazione() {
         return prenotazioneRepository.findAll();
     }
+    public List<Prenotazione> getPrenotazioneByPass(Long idPasseggero){
+        List<Prenotazione> PrenotazioniPass = prenotazioneRepository.findPrenotazioneByIdPasseggero(idPasseggero);
+        return PrenotazioniPass;
+    }
+    public List<Prenotazione> getPrenotazioneByTass(Long idTassista){
+        List<Prenotazione> PrenotazioniTass = prenotazioneRepository.findPrenotazioneByIdTassista(idTassista);
+        return PrenotazioniTass;
+    }
+    public void addNewPrenotazione(Prenotazione prenotazione) {
 
-    public void addNewPasseggero(Passeggero passeggero) {
-
-        Optional<Passeggero> passeggeroOptional = prenotazioneRepository.findPasseggeroByEmail(passeggero.getEmail());
-
-        if(passeggeroOptional.isPresent()){
-            throw new IllegalStateException("Email in uso");
-        }
-
-        prenotazioneRepository.save(passeggero);
+        prenotazioneRepository.save(prenotazione);
     }
 
-    public Passeggero loginPasseggero(String email, String password){
-        Optional<Passeggero> passeggeroOptional = prenotazioneRepository.findPasseggeroByEmail(email);
-        if(passeggeroOptional.isEmpty()){
-            throw new IllegalStateException("Email non esistente");
-        }
-
-        if(!Objects.equals(passeggeroOptional.get().getPassword(), password)){
-            throw new IllegalStateException("Password errata");
-        }
-
-
-        return passeggeroOptional.get();
-
-    }
-
-    public void deletePasseggero(Long IDPasseggero) {
-        boolean esiste = prenotazioneRepository.existsById(IDPasseggero);
+    public void deletePrenotazione(Long IDPrenotazione) {
+        boolean esiste = prenotazioneRepository.existsById(IDPrenotazione);
 
         if(!esiste){
-            throw new IllegalStateException("Id non esistente: "+ IDPasseggero);
+            throw new IllegalStateException("Id non esistente: "+ IDPrenotazione);
         }
 
-        prenotazioneRepository.deleteById(IDPasseggero);
+        prenotazioneRepository.deleteById(IDPrenotazione);
     }
 
-    public void updatePasseggero(String email, String attributo, String valore) {
-        Optional<Passeggero> passeggeroOptional = prenotazioneRepository.findPasseggeroByEmail(email);
+    public void updatePrenotazione(Long id, String attributo, String valore) {
+        Optional<Prenotazione> passeggeroOptional = prenotazioneRepository.findById(id);
         if(passeggeroOptional.isEmpty()){
-            throw new IllegalStateException("Passeggero "+email+" non esiste ");
+            throw new IllegalStateException("Prenotazione non esiste ");
         }
-        long IDPasseggero = passeggeroOptional.get().getIDPasseggero();
-        Passeggero ut1 = new Passeggero();
-        ut1 = prenotazioneRepository.getReferenceById(IDPasseggero);
+        long IDPrenotazione = passeggeroOptional.get().getId();
+        Prenotazione ut1 = new Prenotazione();
+        ut1 = prenotazioneRepository.getReferenceById(IDPrenotazione);
         boolean esiste = true;
         switch(attributo){
-            case "IDPasseggero":
+            case "id":
 
                 /*controlli se id inserito è valido*/
                 try {
@@ -86,50 +72,50 @@ public class PrenotazioneService {
                 }
                 /*fine controlli*/
 
-                ut1.setIDPasseggero(Long.valueOf(valore));
+                ut1.setId(Long.valueOf(valore));
                 break;
-            case "email":
+            case "":
 
-                /*controlli se id inserito è valido*/
-                Optional<Passeggero> passeggeroByEmail = prenotazioneRepository.findPasseggeroByEmail(valore);
+                /*controlli se id inserito è valido
+                Optional<Passeggero> passeggeroByEmail = prenotazioneRepository.findById();
                 if(passeggeroByEmail.isPresent()){
                     throw new IllegalStateException("Questa email già esiste");
                 }
                 if(valore.isEmpty()){
                     throw new IllegalStateException("Email non valida");
                 }
-                /*fine controlli*/
+                /*fine controlli
 
                 ut1.setEmail(valore);
-                System.out.println("nuova email : "+valore);
+                System.out.println("nuova email : "+valore);*/
                 break;
             case "name":
-                if(valore.isEmpty()){
-                    throw new IllegalStateException("Email non valida");
-                }
-                ut1.setName(valore);
+//                if(valore.isEmpty()){
+//                    throw new IllegalStateException("Email non valida");
+//                }
+//                ut1.setName(valore);
                 break;
             case "surname":
-                if(valore.isEmpty()){
-                    throw new IllegalStateException("cognome non valida");
-                }
-                ut1.setSurname(valore);
+//                if(valore.isEmpty()){
+//                    throw new IllegalStateException("cognome non valida");
+//                }
+//                ut1.setSurname(valore);
                 break;
             case "password":
 
-                /*implementare parametri password*/
-
-                if(valore.isEmpty()){
-                    throw new IllegalStateException("password non valida");
-                }
-                ut1.setPassword(valore);
+//                /*implementare parametri password*/
+//
+//                if(valore.isEmpty()){
+//                    throw new IllegalStateException("password non valida");
+//                }
+//                ut1.setPassword(valore);
                 break;
             case "stato":
 
                 /*implementare parametri password*/
 
                 if(valore.isEmpty()){
-                    throw new IllegalStateException("stato non valida");
+                    throw new IllegalStateException("stato non valido");
                 }
                 ut1.setStato(valore);
                 break;

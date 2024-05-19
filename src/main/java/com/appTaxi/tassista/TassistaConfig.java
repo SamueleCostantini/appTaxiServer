@@ -1,5 +1,7 @@
 package com.appTaxi.tassista;
 
+import com.appTaxi.passeggero.Passeggero;
+import com.appTaxi.passeggero.PasseggeroRepository;
 import com.appTaxi.tassista.Tassista;
 import com.appTaxi.tassista.TassistaRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -10,5 +12,29 @@ import java.util.List;
 
 @Configuration
 public class TassistaConfig {
+    @Bean
+    CommandLineRunner commandLineRunner(TassistaRepository repository){
+        return args -> {
+            Tassista samuele  = new Tassista(
+                    "samuele",
+                    "costantini",
+                    "email",
+                    "12345S",
+                    true,
+                    "AA222AA"
+            );
+            Tassista hani  = new Tassista(
+                    "hani",
+                    "belal",
+                    "samu",
+                    "12345S",
+                    true,
+                    "AA222AA"
+            );
 
+            repository.saveAll(
+                    List.of(samuele, hani)
+            );
+        };
+    }
 }

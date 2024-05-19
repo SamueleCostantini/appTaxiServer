@@ -1,57 +1,66 @@
 package com.appTaxi.tassista;
 
 
+import com.appTaxi.passeggero.Passeggero;
 import com.appTaxi.tassista.Tassista;
 import com.appTaxi.tassista.TassistaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
 public class TassistaService {
 
-    private final com.appTaxi.tassista.TassistaRepository utenteRepository;
+    private final com.appTaxi.tassista.TassistaRepository tassistaRepository;
 
     @Autowired
     public TassistaService(TassistaRepository utenteRepository) {
-        this.utenteRepository = utenteRepository;
+        this.tassistaRepository = utenteRepository;
     }
 
     public List<com.appTaxi.tassista.Tassista> getTassista() {
-        return utenteRepository.findAll();
+        return tassistaRepository.findAll();
     }
-
+    public Optional<Tassista> getTassistaById(Long id){
+        boolean exist = tassistaRepository.existsById(id);
+        if(!exist){
+            throw new IllegalStateException("Tassista non esiste");
+        }
+        Optional<Tassista> tassista = tassistaRepository.findById(id);
+        return tassista;
+    }
     public void addNewTassista(com.appTaxi.tassista.Tassista utente) {
 
-        Optional<com.appTaxi.tassista.Tassista> utenteOptional = utenteRepository.findTassistaByEmail(utente.getEmail());
+        Optional<com.appTaxi.tassista.Tassista> utenteOptional = tassistaRepository.findTassistaByEmail(utente.getEmail());
 
         if(utenteOptional.isPresent()){
             throw new IllegalStateException("Email in uso");
         }
 
-        utenteRepository.save(utente);
+        tassistaRepository.save(utente);
     }
 
     public void deleteTassista(Long IDTassista) {
-        boolean esiste = utenteRepository.existsById(IDTassista);
+        boolean esiste = tassistaRepository.existsById(IDTassista);
 
         if(!esiste){
             throw new IllegalStateException("Id non esistente: "+ IDTassista);
         }
 
-        utenteRepository.deleteById(IDTassista);
+        tassistaRepository.deleteById(IDTassista);
     }
 
     public void updateTassista(Long IDTassista, String attributo, String valore) {
-        boolean esiste = utenteRepository.existsById(IDTassista);
+        boolean esiste = tassistaRepository.existsById(IDTassista);
         if(!esiste){
             throw new IllegalStateException("Tassista "+IDTassista+" non esiste ");
         }
-        Optional<com.appTaxi.tassista.Tassista> utente = utenteRepository.findById(IDTassista);
+        Optional<com.appTaxi.tassista.Tassista> utente = tassistaRepository.findById(IDTassista);
         com.appTaxi.tassista.Tassista ut1 = new com.appTaxi.tassista.Tassista();
-        ut1 = utenteRepository.getReferenceById(IDTassista);
+        ut1 = tassistaRepository.getReferenceById(IDTassista);
         switch(attributo){
             case "IDTassista":
 
@@ -61,7 +70,7 @@ public class TassistaService {
                 } catch (NumberFormatException e) {
                     throw new IllegalStateException("Id non valido");
                 }
-                esiste = utenteRepository.existsById(Long.valueOf(valore));
+                esiste = tassistaRepository.existsById(Long.valueOf(valore));
                 if(esiste){
                     throw new IllegalStateException("Questo id già esiste");
                 }
@@ -75,7 +84,7 @@ public class TassistaService {
             case "email":
 
                 /*controlli se id inserito è valido*/
-                Optional<Tassista> utenteByEmail = utenteRepository.findTassistaByEmail(valore);
+                Optional<Tassista> utenteByEmail = tassistaRepository.findTassistaByEmail(valore);
                 if(utenteByEmail.isPresent()){
                     throw new IllegalStateException("Questa email già esiste");
                 }
@@ -108,7 +117,39 @@ public class TassistaService {
                 }
                 ut1.setPassword(valore);
                 break;
+            case "lat":
+
+                /*implementare parametri password*/
+
+                if(valore.isEmpty()){
+                    throw new IllegalStateException("stato non valida");
+                }
+                ut1.setLat(Double.parseDouble(valore));
+                break;
+            case "lng":
+
+                /*implementare parametri password*/
+
+                if(valore.isEmpty()){
+                    throw new IllegalStateException("stato non valida");
+                }
+                ut1.setLng(Double.parseDouble(valore));
+                break;
         }
-        utenteRepository.save(ut1);
+        tassistaRepository.save(ut1);
+    }
+    public Tassista loginPasseggero(String email, String password){
+        Optional<Tassista> tassistaOptional = tassistaRepository.findTassistaByEmail(email);
+        if(tassistaOptional.isEmpty()){
+            throw new IllegalStateException("Email non esistente");
+        }
+
+        if(!Objects.equals(tassistaOptional.get().getPassword(), password)){
+            throw new IllegalStateException("Password errata");
+        }
+
+
+        return tassistaOptional.get();
+
     }
 }

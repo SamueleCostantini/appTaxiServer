@@ -1,7 +1,9 @@
 package com.appTaxi.tassista;
 
 import jakarta.persistence.*;
-
+import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 /*
 * Classe user
@@ -24,7 +26,11 @@ public class Tassista {
     private Long IDTassista; //id user globale
     private String name;
     private String surname;
+    @Email
     private String email;
+
+
+    @Size(min = 8, message = "Password deve avere almeno 8 caratteri")
     private String password; //da cripltare con hash, utilizzare spring security
     private boolean role; //ruolo del utente, 0 per fruitore (cliente), 1 per erogatore(tassista)
 

@@ -42,7 +42,7 @@ public class PrenotazioneController {
 
         prenotazioneService.addNewPrenotazione(prenotazione);
     }
-
+    @CrossOrigin
     @DeleteMapping(path = "{IDPrenotazione}")
     public void deletePrenotazione(@PathVariable("IDPrenotazione") Long IDPrenotazione){
         prenotazioneService.deletePrenotazione(IDPrenotazione);

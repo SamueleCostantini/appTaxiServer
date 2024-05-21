@@ -18,16 +18,16 @@ public class TassistaConfig {
             Tassista samuele  = new Tassista(
                     "samuele",
                     "costantini",
-                    "email",
-                    "12345S",
+                    "email@gmail.com",
+                    "12345678",
                     true,
                     "AA222AA"
             );
             Tassista hani  = new Tassista(
                     "hani",
                     "belal",
-                    "samu",
-                    "12345S",
+                    "samu@gmail.com",
+                    "12345678",
                     true,
                     "AA222AA"
             );

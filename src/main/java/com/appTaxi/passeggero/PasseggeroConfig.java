@@ -15,14 +15,14 @@ public class PasseggeroConfig {
                     "samuele",
                     "costantini",
                     "samu@samu.it",
-                    "12345S",
+                    "12345678",
                     true
             );
             Passeggero hani  = new Passeggero(
                     "hani",
                     "belal",
                     "email@email.com",
-                    "12345S",
+                    "12345678",
                     true
             );
 

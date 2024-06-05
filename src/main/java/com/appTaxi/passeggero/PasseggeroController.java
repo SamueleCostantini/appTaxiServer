@@ -25,7 +25,7 @@ public class PasseggeroController {
 
     }
     @CrossOrigin
-    @PostMapping(path="login")//gestisce le richieste get dal client
+    @PostMapping(path="login")//gestisce le richieste post dal client
     public Passeggero loginPasseggero(@RequestBody Passeggero passeggero) {
 
         return passeggeroService.loginPasseggero(passeggero.getEmail(), passeggero.getPassword());

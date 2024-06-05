@@ -12,16 +12,16 @@ public class PasseggeroConfig {
     CommandLineRunner commandLineRunnerTassista(PasseggeroRepository repository){
         return args -> {
             Passeggero samuele  = new Passeggero(
-                    "samuele",
-                    "costantini",
-                    "samu@samu.it",
+                    "Mario",
+                    "Rossi",
+                    "mario@gmail.com",
                     "12345678",
                     true
             );
             Passeggero hani  = new Passeggero(
-                    "hani",
-                    "belal",
-                    "email@email.com",
+                    "Giovanni",
+                    "Verdi",
+                    "giovanni@gmail.com",
                     "12345678",
                     true
             );

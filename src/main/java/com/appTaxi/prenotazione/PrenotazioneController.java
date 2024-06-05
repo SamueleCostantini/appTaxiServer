@@ -31,6 +31,13 @@ public class PrenotazioneController {
         return prenotazioneService.getPrenotazioneByPass(idPasseggero);
 
     }
+
+    @GetMapping(path = "id={idprenotazione}") //gestisce le richieste get dal client
+    public Prenotazione getPrenotazioneById(@PathVariable("id") Long idPrenotazione) {
+        return prenotazioneService.getPrenotazioneById(idPrenotazione);
+
+    }
+
     @GetMapping(path = "tassista={idtassista}") //gestisce le richieste get dal client
     public List<Prenotazione> getPrenotazioneByTassista(@PathVariable("idtassista") Long idtassista) {
         return prenotazioneService.getPrenotazioneByTass(idtassista);

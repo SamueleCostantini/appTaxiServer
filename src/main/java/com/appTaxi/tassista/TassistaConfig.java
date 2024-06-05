@@ -16,20 +16,20 @@ public class TassistaConfig {
     CommandLineRunner commandLineRunner(TassistaRepository repository){
         return args -> {
             Tassista samuele  = new Tassista(
-                    "samuele",
-                    "costantini",
-                    "email@gmail.com",
+                    "Samuele",
+                    "Costantini",
+                    "samutaxi@gmail.com",
                     "12345678",
                     true,
                     "AA222AA"
             );
             Tassista hani  = new Tassista(
-                    "hani",
-                    "belal",
-                    "samu@gmail.com",
+                    "Hani",
+                    "Belal",
+                    "hanitaxi@gmail.com",
                     "12345678",
                     true,
-                    "AA222AA"
+                    "AB232BA"
             );
 
             repository.saveAll(

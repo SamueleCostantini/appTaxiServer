@@ -25,11 +25,7 @@ public class Prenotazione {
     private String partenza;
     private String destinazione;
     private int km;
-
     private float costoXkm;
-
-
-
     private float costoTratta;
     public Prenotazione(Long id,
                         String stato,

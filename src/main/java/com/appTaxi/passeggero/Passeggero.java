@@ -80,6 +80,8 @@ public class Passeggero {
         this.password = password;
         this.role = role;
         this.stato = "Libero";
+        this.lat = 0;
+        this.lng = 0;
     }
 
     public Passeggero(String name,

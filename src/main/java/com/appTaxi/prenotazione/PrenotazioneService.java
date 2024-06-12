@@ -27,8 +27,8 @@ public class PrenotazioneService {
         return PrenotazioniPass;
     }
     public Prenotazione getPrenotazioneById(Long idPrenotazione){
-        Prenotazione prenotazione = prenotazioneRepository.getReferenceById(idPrenotazione);
-        return prenotazione;
+        Optional<Prenotazione> prenotazione = prenotazioneRepository.findById(idPrenotazione);
+        return prenotazione.get();
     }
     public List<Prenotazione> getPrenotazioneByTass(Long idTassista){
         List<Prenotazione> PrenotazioniTass = prenotazioneRepository.findPrenotazioneByIdTassista(idTassista);

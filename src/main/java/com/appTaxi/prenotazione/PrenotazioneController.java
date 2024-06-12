@@ -1,11 +1,10 @@
 package com.appTaxi.prenotazione;
 
-import com.appTaxi.passeggero.Passeggero;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 /*
 *  risorse per api
@@ -32,8 +31,8 @@ public class PrenotazioneController {
 
     }
 
-    @GetMapping(path = "id={idprenotazione}") //gestisce le richieste get dal client
-    public Prenotazione getPrenotazioneById(@PathVariable("id") Long idPrenotazione) {
+    @GetMapping(path = "id/{idprenotazione}") //gestisce le richieste get dal client
+    public Prenotazione getPrenotazioneById(@PathVariable("idprenotazione") Long idPrenotazione) {
         return prenotazioneService.getPrenotazioneById(idPrenotazione);
 
     }
